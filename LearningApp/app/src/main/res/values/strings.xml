@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LearningApp</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Signup</string>
+
+    <string name="default_web_client_id">597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com</string>
 </resources>
