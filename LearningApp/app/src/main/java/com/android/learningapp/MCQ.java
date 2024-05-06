@@ -1,25 +1,40 @@
 package com.android.learningapp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MCQ {
     private String question;
-    private String[] options;
+    private ArrayList<String> options;
     private int correctAnswerIndex;
+
+    private String imgURl;
 
     public MCQ(){
 
     }
 
-    public MCQ(String question, String[] options, int correctAnswerIndex) {
+    public String getImgURl() {
+        return imgURl;
+    }
+
+    public void setImgURl(String imgURl) {
+        this.imgURl = imgURl;
+    }
+
+    public MCQ(String question, ArrayList<String> options, int correctAnswerIndex, String imgURl) {
         this.question = question;
         this.options = options;
         this.correctAnswerIndex = correctAnswerIndex;
+        this.imgURl = imgURl;
     }
 
     public String getQuestion() {
         return question;
     }
 
-    public String[] getOptions() {
+    public ArrayList<String> getOptions() {
         return options;
     }
 
@@ -31,7 +46,7 @@ public class MCQ {
         this.question = question;
     }
 
-    public void setOptions(String[] options) {
+    public void setOptions(ArrayList<String> options) {
         this.options = options;
     }
 

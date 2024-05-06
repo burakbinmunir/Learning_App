@@ -17,6 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Home extends AppCompatActivity {
 
     private Toolbar topAppBar;
@@ -78,9 +81,10 @@ public class Home extends AppCompatActivity {
         btnTakeApptitudeTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Home.this, "Taking Apptitude Test", Toast.LENGTH_LONG).show();
+                Toast.makeText(Home.this, "Taking Aptitude Test", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Home.this, AptitudeTest.class);
                 startActivity(intent);
+
             }
         });
     }

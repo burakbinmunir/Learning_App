@@ -3,57 +3,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment_mcq"
     android:orientation="vertical"
-    >
-
+    android:padding="16dp"
+    android:background="@color/background_color"
+    tools:context=".fragment_mcq">
 
     <!-- Question -->
+    <TextView
+        android:id="@+id/tvMcqQuestionNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:textColor="@color/text_color"
+        android:text="Question. 1" />
+
     <TextView
         android:id="@+id/tvMcqQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This is a Question. How are you?"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="italic"
+        android:paddingBottom="16dp"
+        android:textColor="@color/text_color"
+        android:text="How are you doing today?" />
+
+    <!-- Question Icon -->
+    <ImageView
+        android:id="@+id/ivQuestionImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/common_google_signin_btn_icon_dark"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
 
     <!-- Options -->
     <RadioGroup
         android:id="@+id/radioGroupOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
 
         <RadioButton
             android:id="@+id/rbOption1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:buttonTint="@color/radio_button_color"
             android:text="Option 1" />
 
         <RadioButton
             android:id="@+id/rbOption2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:buttonTint="@color/radio_button_color"
             android:text="Option 2" />
 
         <RadioButton
             android:id="@+id/rbOption3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:buttonTint="@color/radio_button_color"
             android:text="Option 3" />
 
         <RadioButton
             android:id="@+id/rbOption4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:buttonTint="@color/radio_button_color"
             android:text="Option 4" />
     </RadioGroup>
 
-    <!-- Next Button -->
-    <Button
-        android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <!-- Next Button -->
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:backgroundTint="@color/button_color"
+            android:textColor="@color/text_color"
+            android:text="Next"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Finish Button -->
+        <Button
+            android:id="@+id/btnFinish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:backgroundTint="@color/button_color"
+            android:textColor="@color/text_color"
+            android:text="Finish"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp" />
+
+    </LinearLayout>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/pbProgressBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next" />
+        android:layout_marginTop="16dp"
+        style="?android:attr/progressBarStyleHorizontal" />
 
 </LinearLayout>

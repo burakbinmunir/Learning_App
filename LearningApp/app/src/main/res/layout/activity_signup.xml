@@ -7,8 +7,10 @@
     android:padding="16dp"
     tools:context=".Signup"
     android:id="@+id/Signup"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_color"> <!-- added background color -->
 
+    <!-- App Name -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,8 +18,20 @@
         android:textStyle="bold"
         android:textSize="32sp"
         android:gravity="center"
-        />
+        android:layout_marginTop="24dp" /> <!-- added margin top -->
 
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageView1"
+        android:layout_width="380dp"
+        android:layout_height="220dp"
+        android:src="@mipmap/app_logo_foreground"
+        app:riv_corner_radius="30dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_oval="true" />
+
+    <!-- Email Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:id="@+id/tiEmail"
@@ -25,16 +39,16 @@
         android:hint="@string/email"
         app:endIconMode="clear_text"
         android:layout_margin="10dp"
-        >
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"> <!-- added outlined box style -->
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:textSize="16sp" /> <!-- added text size -->
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Password Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tiPassword"
         android:layout_width="match_parent"
@@ -42,16 +56,16 @@
         android:hint="@string/password"
         app:endIconMode="password_toggle"
         android:layout_margin="10dp"
-        >
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"> <!-- added outlined box style -->
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:textSize="16sp" /> <!-- added text size -->
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Signup Button -->
     <Button
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:id="@+id/btnSignup"
@@ -61,12 +75,21 @@
         android:text="@string/signup"
         android:layout_margin="10dp"
         android:background="@drawable/pointed_button_shape"
-        />
+        android:textSize="16sp" /> <!-- added text size -->
 
+    <!-- Google Sign In Button -->
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnGoogleSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp" />
+
+    <ProgressBar
+        android:id="@+id/pbSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>

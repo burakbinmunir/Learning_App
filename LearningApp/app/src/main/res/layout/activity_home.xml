@@ -13,7 +13,6 @@
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
         app:title="Learning App"
         app:titleTextColor="@android:color/black"
         app:menu="@menu/top_app_bar_menu"/>
@@ -22,7 +21,9 @@
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="16dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp">>
 
         <LinearLayout
             android:layout_width="match_parent"
