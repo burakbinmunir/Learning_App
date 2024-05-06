@@ -44,7 +44,6 @@ public class Signup extends AppCompatActivity {
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
 
-    FirebaseDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,10 +55,12 @@ public class Signup extends AppCompatActivity {
             return insets;
         });
 
-        database = FirebaseDatabase.getInstance("https://learningapp-1302-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("Sallam, Dunya!");
+        firebaseAuthentication();
+        init();
 
+    }
+
+    private void firebaseAuthentication(){
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -67,6 +68,12 @@ public class Signup extends AppCompatActivity {
                 .requestEmail().build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    private void init() {
+        tiEmail = findViewById(R.id.tiEmail);
+        tiPassword = findViewById(R.id.tiPassword);
+        btnSignup = findViewById(R.id.btnSignup);
 
         btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
         btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +82,57 @@ public class Signup extends AppCompatActivity {
                 googleSigin();
             }
         });
-        init();
 
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signupWithEmailAndPassword();
+            }
+        });
     }
+    private void addUserToDatabase(String userId, String email, String password) {
+
+        User newUser = new User(userId, email, password);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://learningapp-1302-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference usersRef = database.getReference("users"); // Initialize database reference here
+        usersRef.child(userId).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(Signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Signup.this, Home.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Signup.this, "Failed to add user: " + task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private void signupWithEmailAndPassword() {
+        // Ensure tiEmail and tiPassword are initialized before accessing them
+        if (tiEmail.getEditText() != null && tiPassword.getEditText() != null) {
+            String email = tiEmail.getEditText().getText().toString().trim();
+            String password = tiPassword.getEditText().getText().toString().trim();
+
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                addUserToDatabase(user.getUid(), email, password);
+                            } else {
+                                Toast.makeText(Signup.this, "Authentication failed: " + Objects.requireNonNull(task.getException()).getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        } else {
+            Toast.makeText(Signup.this, "Email or password field is null", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void googleSigin() {
         Intent intent = mGoogleSignInClient.getSignInIntent();
@@ -109,9 +164,8 @@ public class Signup extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
-
-                            Intent intent = new Intent(Signup.this, Home.class);
-                            startActivity(intent);
+                            // when signing in with google the user's password will be user's id
+                            addUserToDatabase(user.getUid(), user.getEmail(), user.getUid());
                         }
                         else {
                             Toast.makeText(Signup.this, "Something went wrong with firebase authentication", Toast.LENGTH_SHORT).show();
@@ -120,21 +174,8 @@ public class Signup extends AppCompatActivity {
                 });
     }
 
-    private void init() {
-        tiEmail = findViewById(R.id.tiEmail);
-        tiPassword = findViewById(R.id.tiPassword);
-        btnSignup = findViewById(R.id.btnSignup);
-        btnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // Write a message to the database
-
-
-
-            }
-        });
-
-
+    private void updateUI(){
+        Intent intent = new Intent(Signup.this, Home.class);
+        startActivity(intent);
     }
 }

@@ -5,4 +5,11 @@
     <string name="signup">Signup</string>
 
     <string name="default_web_client_id">597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com</string>
+    <string name="apptitude_test_icon">Apptitude Test Icon</string>
+    <string name="apptitude_test">Apptitude Test</string>
+    <string name="click_here_to_unlock_your_potential">Click here to unlock your potential!</string>
+    <string name="unlock_your_potential_by_taking_our_apptitude_test">Unlock your potential by taking our apptitude test</string>
+    <string name="take_test">Take test</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
