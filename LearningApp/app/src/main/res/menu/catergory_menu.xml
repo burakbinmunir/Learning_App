@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/datascience"
+        android:title="@string/data_science" />
+    <item android:id="@+id/machinelearning"
+        android:title="@string/machine_learning" />
+    <item android:id="@+id/devops"
+        android:title="@string/devops" />
+    <item android:id="@+id/cloud"
+        android:title="@string/cloud" />
+    <item android:id="@+id/webdevelopment"
+        android:title="@string/web_development" />
+    <item android:id="@+id/mobiledevelopment"
+        android:title="@string/mobile_development" />
+    <item android:id="@+id/general"
+        android:title="@string/general" />
+</menu>

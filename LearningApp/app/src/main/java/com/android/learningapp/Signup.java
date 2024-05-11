@@ -133,6 +133,7 @@ public class Signup extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(Signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     Intent intent = new Intent(Signup.this, Home.class);
                     startActivity(intent);
                 } else {
@@ -168,7 +169,6 @@ public class Signup extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             addUserToDatabase(user.getUid(), user.getEmail(), user.getUid());
-                            updateUI();
                         } else {
                             Toast.makeText(Signup.this, "Something went wrong with firebase authentication", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -177,9 +177,4 @@ public class Signup extends AppCompatActivity {
                 });
     }
 
-    private void updateUI() {
-        Intent intent = new Intent(Signup.this, Home.class);
-        startActivity(intent);
-        progressBar.setVisibility(View.GONE);
-    }
 }

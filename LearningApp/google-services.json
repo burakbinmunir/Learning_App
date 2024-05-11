@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "597446628586",
+    "firebase_url": "https://learningapp-1302-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "learningapp-1302",
+    "storage_bucket": "learningapp-1302.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597446628586:android:b9e8f6821e966dc1ea3393",
+        "android_client_info": {
+          "package_name": "com.android.learningapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597446628586-i8apruttt8ul2oj0tlpeggqco8o8art8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.learningapp",
+            "certificate_hash": "20bebaa30109dbfc2168cefc1d752f4914590540"
+          }
+        },
+        {
+          "client_id": "597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAecZeiHCTYrhKUWHKvPJRTaB1ge1sF12o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "597446628586-94od9hnv5u0jr9lun51ci6i526b46vtn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.smd.learningapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

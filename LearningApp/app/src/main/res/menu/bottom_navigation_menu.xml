@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemhome"
+        android:enabled="true"
+        android:icon="@drawable/icon_home"
+        android:title="@string/home"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/itemblog"
+        android:enabled="true"
+        android:icon="@drawable/blog_icon"
+        android:title="@string/blogs"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/itemprofile"
+        android:enabled="true"
+        android:icon="@drawable/account_circle"
+        android:title="@string/profile_"
+        app:showAsAction="ifRoom"/>
+</menu>

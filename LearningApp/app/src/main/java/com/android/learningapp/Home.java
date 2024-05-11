@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,6 +26,7 @@ public class Home extends AppCompatActivity {
 
     private Toolbar topAppBar;
     private MaterialButton btnTakeApptitudeTest;
+    BottomNavigationView  bottom_navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,26 @@ public class Home extends AppCompatActivity {
 
         init();
 
+    }
+
+    private void initializeBottomAppBar () {
+        bottom_navigation = findViewById(R.id.bottom_navigation);
+        bottom_navigation.setBottom(2);
+        bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.itemblog){
+                    Intent intent = new Intent(Home.this, Blogs.class);
+                    startActivity(intent);
+                    return true;
+                } else if (menuItem.getItemId() == R.id.itemprofile) {
+                    Intent intent = new Intent(Home.this, UserProfile.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void initializeTopAppBar (){
@@ -56,11 +79,7 @@ public class Home extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
-                if (itemId == R.id.action_profile) {
-
-                    Toast.makeText(Home.this, "Profile Selected", Toast.LENGTH_SHORT).show();
-                    return true;
-                } else if (itemId == R.id.action_logout) {
+                if (itemId == R.id.action_logout) {
 
                     FirebaseAuth.getInstance().signOut();
 
@@ -84,13 +103,13 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(Home.this, "Taking Aptitude Test", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Home.this, AptitudeTest.class);
                 startActivity(intent);
-
             }
         });
     }
 
     private void init () {
      initializeTopAppBar();
+     initializeBottomAppBar();
      initializeTakeApptitudeTestButton();
     }
 

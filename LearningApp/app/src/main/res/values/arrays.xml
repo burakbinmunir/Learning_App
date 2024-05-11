@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="dropdown_options">
+        <item>Data Science</item>
+        <item>Machine Learning</item>
+        <item>DevOps</item>
+        <item>Cloud</item>
+        <item>Web Development</item>
+        <item>Mobile Development</item>
+    </string-array>
+</resources>
