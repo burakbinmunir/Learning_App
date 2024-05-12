@@ -88,4 +88,8 @@
     <string name="general">General</string>
     <string name="blog_image">Blog Image</string>
     <string name="blog_name">Blog Name</string>
+    <string name="got_an_account_sign_in">Got an account? Sign in</string>
+    <string name="create_account">Create Account</string>
+    <string name="_00_00">00:00</string>
+    <string name="blog_content">Blog Content</string>
 </resources>

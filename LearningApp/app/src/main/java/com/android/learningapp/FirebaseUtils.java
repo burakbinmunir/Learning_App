@@ -88,6 +88,8 @@ public class FirebaseUtils {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Blog blog = child.getValue(Blog.class);
+                    assert blog != null;
+                    blog.setBlogKey(child.getKey());
                     blogs.add(blog);
                 }
                 listener.onBlogsFetched(blogs);

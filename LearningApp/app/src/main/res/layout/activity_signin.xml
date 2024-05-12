@@ -2,15 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".Signup"
-    android:id="@+id/Signup"
-    android:orientation="vertical"
-    android:background="@color/background_color"> <!-- added background color -->
+    tools:context=".Signin"
+    android:orientation="vertical">
 
-    <!-- App Name -->
+    <!-- App Logo -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +16,7 @@
         android:textStyle="bold"
         android:textSize="32sp"
         android:gravity="center"
-        android:layout_marginTop="24dp" /> <!-- added margin top -->
+        android:layout_marginTop="24dp" />
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -34,7 +32,7 @@
     <!-- Email Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:id="@+id/tiEmail"
+        android:id="@+id/tiSigninEmail"
         android:layout_height="wrap_content"
         android:hint="@string/email"
         app:endIconMode="clear_text"
@@ -50,7 +48,7 @@
 
     <!-- Password Input -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiPassword"
+        android:id="@+id/tiSigninPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
@@ -68,40 +66,40 @@
     <!-- Signup Button -->
     <Button
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:id="@+id/btnSignup"
+        android:id="@+id/btnSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/signup"
+        android:text="@string/common_signin_button_text"
         android:layout_margin="10dp"
         android:background="@drawable/pointed_button_shape"
         android:textSize="16sp" /> <!-- added text size -->
 
     <!-- Google Sign In Button -->
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/btnGoogleSignIn"
+        android:id="@+id/btnSigninPageGoogleSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp" />
 
-<!--    Signin instead -->
     <Button
         style="@style/Widget.Material3.Button.ElevatedButton"
-        android:id="@+id/btnGotAnAccountSignIn"
+        android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/got_an_account_sign_in"
+        android:text="@string/create_account"
         android:layout_margin="10dp"
         android:background="@drawable/pointed_button_shape"
         android:textSize="16sp" />
 
     <ProgressBar
-        android:id="@+id/pbSignup"
+        android:id="@+id/pbSignin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone" />
+
 
 </LinearLayout>

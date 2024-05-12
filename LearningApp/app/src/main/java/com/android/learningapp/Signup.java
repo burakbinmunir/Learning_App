@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,13 +38,14 @@ import java.util.Objects;
 public class Signup extends AppCompatActivity {
     private TextInputLayout tiEmail;
     private TextInputLayout tiPassword;
-    private Button btnSignup;
+    private Button btnSignup, btnGotAnAccountSignIn;
     private SignInButton btnGoogleSignIn;
     private ProgressBar progressBar;
 
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,26 @@ public class Signup extends AppCompatActivity {
         btnSignup = findViewById(R.id.btnSignup);
         btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
         progressBar = findViewById(R.id.pbSignup);
+        btnGotAnAccountSignIn = findViewById(R.id.btnGotAnAccountSignIn);
+
+        btnGotAnAccountSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Signup.this, Signin.class);
+                startActivity(intent);
+            }
+        });
+
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < btnGoogleSignIn.getChildCount(); i++) {
+            View v = btnGoogleSignIn.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText("Signup with Google");
+                break;
+            }
+        }
     }
 
     private void setupEventListeners() {
@@ -88,6 +110,16 @@ public class Signup extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (tiEmail.getEditText().getText().toString().isEmpty() ) {
+                    tiEmail.setError("Email is required");
+                    return;
+                }
+
+                if (tiPassword.getEditText().getText().toString().isEmpty()) {
+                    tiPassword.setError("Password is required");
+                    return;
+                }
+
                 signupWithEmailAndPassword();
             }
         });

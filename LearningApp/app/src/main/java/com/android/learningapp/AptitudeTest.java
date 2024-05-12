@@ -3,6 +3,7 @@ package com.android.learningapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,7 +27,7 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
     int currentQuestionIndex;
 
     Button btnNext, btnFinish;
-    TextView tvMcqQuestion, tvMcqQuestionNumber;
+    TextView tvMcqQuestion, tvMcqQuestionNumber, timer;
     RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     ProgressBar pbProgressBar;
     ImageView ivQuestionImage;
@@ -56,18 +57,38 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
             @Override
             public void onClick(View v) {
                 currentQuestionIndex++;
+                rbOption1.setChecked(false);
+                rbOption2.setChecked(false);
+                rbOption3.setChecked(false);
+                rbOption4.setChecked(false);
                 displayQuestion();
             }
         });
 
-    btnFinish.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(AptitudeTest.this, ApptitudeTestScore.class);
-            intent.putExtra("score", score);
-            startActivity(intent);
-        }
-    });
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AptitudeTest.this, ApptitudeTestScore.class);
+                intent.putExtra("score", score);
+                startActivity(intent);
+            }
+        });
+
+        // set timer for 30 seconds
+        timer = findViewById(R.id.timer);
+        new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timer.setText("Time remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                Toast.makeText(AptitudeTest.this, "Time is up", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AptitudeTest.this, ApptitudeTestScore.class);
+                intent.putExtra("score", score);
+                startActivity(intent);
+            }
+        }.start();
     }
 
 
@@ -75,10 +96,8 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
     @Override
     public void onMCQDataLoaded(ArrayList<MCQ> mcqs) {
         mcqList = mcqs;
-        Toast.makeText(this, "MCQs loaded: " + mcqList.size(), Toast.LENGTH_SHORT).show();
         initializeViews();
         displayQuestion();
-        Toast.makeText(this, "MCQs loaded: " + mcqList.size(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -87,11 +106,14 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
     }
 
     private void displayQuestion() {
-        if (currentQuestionIndex >= 0 && currentQuestionIndex < mcqList.size()) {
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < mcqList.size() - 1) {
             MCQ currentMCQ = mcqList.get(currentQuestionIndex);
             tvMcqQuestionNumber.setText("Question: " + String.valueOf(currentQuestionIndex + 1));
             tvMcqQuestion.setText(currentMCQ.getQuestion());
-            ivQuestionImage.setImageURI(Uri.parse(currentMCQ.getImgURl()));
+
+            // set image using glide from ImageUtils
+            ImageUtils.loadImage(this, currentMCQ.getImgURl(), ivQuestionImage);
+
             rbOption1.setText(currentMCQ.getOptions().get(0));
             rbOption2.setText(currentMCQ.getOptions().get(1));
             rbOption3.setText(currentMCQ.getOptions().get(2));
@@ -105,11 +127,8 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
             rbOption3.setOnClickListener(view -> handleOptionSelected(2));
             rbOption4.setOnClickListener(view -> handleOptionSelected(3));
 
-            rbOption1.setChecked(false);
-            rbOption2.setChecked(false);
-            rbOption3.setChecked(false);
-            rbOption4.setChecked(false);
-
+            // disable next button
+            btnNext.setEnabled(false);
         }
         else {
             btnFinish.setVisibility(View.VISIBLE);
@@ -126,6 +145,8 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
             score += 0;
         }
 
+        // enable next button
+        btnNext.setEnabled(true);
     }
 
     @Override

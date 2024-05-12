@@ -1,11 +1,14 @@
 package com.android.learningapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -68,6 +71,47 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
                 intent.putExtra("blogContent", blog.getContent());
                 intent.putExtra("blogImageUrl", blog.getImageUrl());
                 context.startActivity(intent);
+            });
+
+            // on long click open dialog box to edit or delete blog
+            itemView.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                Blog blog = blogList.get(position);
+                // open alert dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Update or Delete Blog");
+                View view = LayoutInflater.from(context).inflate(R.layout.dialog_update_delete_blog, null);
+                builder.setView(view);
+
+                // set up dialog box
+                EditText dialogEtBlogTitle = view.findViewById(R.id.dialogEtBlogTitle);
+                EditText dialogEtBlogContent = view.findViewById(R.id.dialogEtBlogContent);
+                dialogEtBlogContent.setText(blog.getContent());
+                System.out.printf("Blog content: %s\n", blog.getContent());
+                dialogEtBlogTitle.setText(blog.getTitle());
+
+                // update blog
+                view.findViewById(R.id.dialogBtnUpdate).setOnClickListener(v1 -> {
+                    String updatedTitle = dialogEtBlogTitle.getText().toString();
+                    String updatedContent = dialogEtBlogContent.getText().toString();
+                    blog.setTitle(updatedTitle);
+                    blog.setContent(updatedContent);
+//                    notifyDataSetChanged();
+//                    // update blog in database
+//                    FirebaseUtils firebaseUtils = new FirebaseUtils(context);
+//                    firebaseUtils.updateBlog(blog);
+                });
+
+                // delete blog
+                view.findViewById(R.id.dialogBtnDelete).setOnClickListener(v1 -> {
+                    // delete blog from database
+//                    FirebaseUtils firebaseUtils = new FirebaseUtils(context);
+//                    firebaseUtils.deleteBlog(blog);
+                });
+
+                builder.create().show();
+
+                return true;
             });
         }
 
