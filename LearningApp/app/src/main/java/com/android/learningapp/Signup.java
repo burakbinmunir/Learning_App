@@ -154,7 +154,7 @@ public class Signup extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuth(account.getIdToken());
             } catch (ApiException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error coming: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.GONE);
             }
         }
