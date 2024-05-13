@@ -8,11 +8,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -47,6 +49,7 @@ public class AddNewBlog extends AppCompatActivity {
     AutoCompleteTextView actvBlogCategory;
 
     String selectedCategory = "General";
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,8 @@ public class AddNewBlog extends AppCompatActivity {
         etContent = findViewById(R.id.etContent);
         etTitle = findViewById(R.id.etTitle);
         selectedImageView = findViewById(R.id.selectedImageView);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
         setBtnSelectImage();
         setBtnAddBlog();
         setActvBlogCategory();
@@ -80,19 +85,20 @@ public class AddNewBlog extends AppCompatActivity {
 
         actvBlogCategory.setOnItemClickListener((parent, view, position, id) -> {
             selectedCategory = (String) parent.getItemAtPosition(position);
-            Toast.makeText(this, "Selected category: " + selectedCategory, Toast.LENGTH_SHORT).show();
         });
     }
 
     private void setBtnAddBlog() {
         btnAddBlog = findViewById(R.id.btnAddBlog);
         btnAddBlog.setOnClickListener(v -> {
+            progressBar.setVisibility(View.VISIBLE);
             new ImageUploadTask(AddNewBlog.this, new CloudinaryUploadListener() {
                 @Override
                 public void onCloudinaryUploadComplete(Map uploadResult) {
+                    progressBar.setVisibility(View.GONE);
                     if (uploadResult != null) {
                         imageUploadResult = Objects.requireNonNull(uploadResult.get("secure_url")).toString();
-                        FirebaseUtils firebaseUtils = new FirebaseUtils(AddNewBlog.this);
+                        FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(AddNewBlog.this);
                         firebaseUtils.uploadBlog(new Blog(
                                 Objects.requireNonNull(etTitle.getText()).toString(),
                                 Objects.requireNonNull(etContent.getText()).toString(),

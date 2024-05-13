@@ -3,6 +3,7 @@ package com.android.learningapp;
 import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -129,7 +130,8 @@ public class Signin extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-
+                                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(Signin.this);
+                                firebaseUtils.setCurrentUser(user);
                                 startActivity(new Intent(Signin.this, Home.class));
                                 finish();
                             } else {
@@ -182,7 +184,9 @@ public class Signin extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        addUserToDatabase(user.getUid(), user.getEmail(), user.getUid());
+                        FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(Signin.this);
+                        firebaseUtils.setCurrentUser(user);
+                        addUserToDatabase(user.getUid(), user.getEmail(), "", user.getDisplayName(), "", user.getPhotoUrl().toString());
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -192,8 +196,8 @@ public class Signin extends AppCompatActivity {
                 });
     }
 
-    private void addUserToDatabase(String userId, String email, String password) {
-        User newUser = new User(userId, email, password);
+    private void addUserToDatabase(String userId, String email, String password, String displayName, String phoneNumber, String photoUrl) {
+        User newUser = new User(userId, email, password, displayName, phoneNumber, photoUrl);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://learningapp-1302-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference usersRef = database.getReference("users"); // Initialize database reference here

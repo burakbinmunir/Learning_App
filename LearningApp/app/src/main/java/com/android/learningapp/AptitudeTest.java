@@ -153,7 +153,7 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aptitude_test);
-        FirebaseUtils firebaseUtils = new FirebaseUtils(this);
+        FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(this);
         firebaseUtils.getApptitudeTestMcqs(this);
     }
 }

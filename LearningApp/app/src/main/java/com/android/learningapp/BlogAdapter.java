@@ -57,6 +57,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
     public class BlogViewHolder extends RecyclerView.ViewHolder {
         private TextView blogTitle, blogContent;
         private ImageView blogImage;
+        private AlertDialog alertDialog;
 
         public BlogViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,7 +88,6 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
                 EditText dialogEtBlogTitle = view.findViewById(R.id.dialogEtBlogTitle);
                 EditText dialogEtBlogContent = view.findViewById(R.id.dialogEtBlogContent);
                 dialogEtBlogContent.setText(blog.getContent());
-                System.out.printf("Blog content: %s\n", blog.getContent());
                 dialogEtBlogTitle.setText(blog.getTitle());
 
                 // update blog
@@ -96,20 +96,27 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
                     String updatedContent = dialogEtBlogContent.getText().toString();
                     blog.setTitle(updatedTitle);
                     blog.setContent(updatedContent);
-//                    notifyDataSetChanged();
 //                    // update blog in database
-//                    FirebaseUtils firebaseUtils = new FirebaseUtils(context);
-//                    firebaseUtils.updateBlog(blog);
+                    FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
+                    firebaseUtils.updateBlog(blog);
+                    notifyDataSetChanged();
+                    // close dialog
+                    alertDialog.dismiss();
                 });
 
                 // delete blog
                 view.findViewById(R.id.dialogBtnDelete).setOnClickListener(v1 -> {
                     // delete blog from database
-//                    FirebaseUtils firebaseUtils = new FirebaseUtils(context);
-//                    firebaseUtils.deleteBlog(blog);
+                    FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
+                    firebaseUtils.deleteBlog(blog);
+                    notifyDataSetChanged();
+                    blogList.remove(blog);
+                    // close dialog
+                    alertDialog.dismiss();
                 });
 
-                builder.create().show();
+                alertDialog = builder.create(); // Create the dialog here
+                alertDialog.show();
 
                 return true;
             });

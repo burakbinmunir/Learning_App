@@ -1,6 +1,7 @@
 package com.android.learningapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,8 +31,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -143,7 +147,10 @@ public class Signup extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                addUserToDatabase(user.getUid(), email, password);
+                                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(Signup.this);
+                                firebaseUtils.setCurrentUser(user);
+                                String displayName = user.getEmail().split("@")[0];
+                                addUserToDatabase(user.getUid(), email, password, displayName, "", null);
                             } else {
                                 Toast.makeText(Signup.this, "Authentication failed: " + Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_SHORT).show();
@@ -155,24 +162,47 @@ public class Signup extends AppCompatActivity {
         }
     }
 
-    private void addUserToDatabase(String userId, String email, String password) {
-        User newUser = new User(userId, email, password);
+    private void addUserToDatabase(String userId, String email, String password, String displayName, String phoneNumber, String photoUrl) {
+
+        User newUser = new User(userId, email, password, displayName, phoneNumber, photoUrl);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://learningapp-1302-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference usersRef = database.getReference("users"); // Initialize database reference here
-        usersRef.child(userId).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        // check if user already exists
+        usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(Signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+
                     Intent intent = new Intent(Signup.this, Home.class);
                     startActivity(intent);
+                    progressBar.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(Signup.this, "Failed to add user: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    usersRef.child(userId).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Signup.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                Intent intent = new Intent(Signup.this, Home.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(Signup.this, "Failed to add user: " + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Signup.this, "Failed to add user: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            }
         });
+
+
     }
 
     @Override
@@ -200,7 +230,13 @@ public class Signup extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            addUserToDatabase(user.getUid(), user.getEmail(), user.getUid());
+                            if (user != null) {
+                                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(Signup.this);
+                                firebaseUtils.setCurrentUser(user);
+                                addUserToDatabase(user.getUid(), user.getEmail(), user.getUid(), user.getDisplayName(), user.getPhoneNumber(), Objects.requireNonNull(user.getPhotoUrl()).toString());
+                            } else {
+                                Toast.makeText(Signup.this, "User is null after successful sign-in", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(Signup.this, "Something went wrong with firebase authentication", Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
