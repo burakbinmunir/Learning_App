@@ -94,4 +94,21 @@
     <string name="blog_content">Blog Content</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save_changes">Save Changes</string>
+    <string name="ecat_test_picture">Ecat Test Picture</string>
+    <string name="ecat">ECAT</string>
+    <string name="engineering_college_admission_test">Engineering College Admission Test</string>
+    <string name="unlock_your_engineering_dreams_with_our_ecat_preparation">Unlock your engineering dreams with our ECAT preparation!</string>
+    <string name="mock_tests">Mock Tests</string>
+    <string name="master_the_art_of_testing_with_our_comprehensive_mock_tests">Master the art of testing with our comprehensive mock tests</string>
+    <string name="start_practicing">Start Practicing</string>
+    <string name="physics">Physics</string>
+    <string name="conquer_the_laws_of_nature_with_our_engaging_physics_tests">Conquer the laws of nature with our engaging physics tests!</string>
+    <string name="chemistry">Chemistry</string>
+    <string name="unleash_the_power_of_elements_with_our_chemistry_tests">Unleash the power of elements with our chemistry tests!</string>
+    <string name="maths">Maths</string>
+    <string name="crack_the_code_of_numbers_with_our_maths_tests">Crack the code of numbers with our maths tests!</string>
+    <string name="english">English</string>
+    <string name="master_the_art_of_language_with_our_english_tests">Master the art of language with our English tests!</string>
+    <string name="mock_test_results">Mock Test Results</string>
+    <string name="retype_password">Retype password</string>
 </resources>

@@ -38,6 +38,21 @@ public class EditProfile extends AppCompatActivity {
         etEditProfileMobile = findViewById(R.id.etEditProfileMobile);
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
 
+        // get intent data
+        Intent i = getIntent();
+        String username = i.getStringExtra("username");
+        String bio = i.getStringExtra("bio");
+        String email = i.getStringExtra("email");
+        String mobile = i.getStringExtra("mobile");
+
+        // set the data to the edit text fields
+        etEditProfileUsername.setText(username);
+        etEditProfileBio.setText(bio);
+        etEditProfileEmail.setText(email);
+        etEditProfileMobile.setText(mobile);
+
+
+
         btnSaveChanges.setOnClickListener(v -> {
             // only update those fields that have been changed if any edit text is empty then don't update that field
 

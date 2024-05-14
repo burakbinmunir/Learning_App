@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -79,6 +81,37 @@ public class Signin extends AppCompatActivity {
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
         btnSigninPageGoogleSignIn = findViewById(R.id.btnSigninPageGoogleSignIn);
 
+        // remove error when user starts typing
+        Objects.requireNonNull(tiSigninEmail.getEditText()).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tiSigninEmail.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        // remove error when user starts typing
+        Objects.requireNonNull(tiSigninPassword.getEditText()).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tiSigninPassword.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
         // Find the TextView that is inside of the SignInButton and set its text
         for (int i = 0; i < btnSigninPageGoogleSignIn.getChildCount(); i++) {
@@ -122,7 +155,21 @@ public class Signin extends AppCompatActivity {
             String email = Objects.requireNonNull(tiSigninEmail.getEditText()).getText().toString();
             String password = Objects.requireNonNull(tiSigninPassword.getEditText()).getText().toString();
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(Signin.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+
+                // set error message if email or password is empty
+                if (email.isEmpty()) {
+                    tiSigninEmail.setError("Email is required");
+                } else {
+                    tiSigninEmail.setError(null);
+                }
+
+                if (password.isEmpty()) {
+                    tiSigninPassword.setError("Password is required");
+
+                } else {
+                    tiSigninPassword.setError(null);
+                }
+
             } else {
                 pbSignin.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email, password)

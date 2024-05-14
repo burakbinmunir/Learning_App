@@ -20,7 +20,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:text="@string/aptitude_test_results" />
+            android:text="@string/mock_test_results" />
 
         <!-- Score Text -->
         <TextView
@@ -56,7 +56,7 @@
             android:id="@+id/btnBackToHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
+            android:text="Practice mock tests"
             android:textSize="18sp"
             android:layout_gravity="center"/>
 

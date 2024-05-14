@@ -3,6 +3,8 @@ package com.android.learningapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -41,7 +43,7 @@ import java.util.Objects;
 
 public class Signup extends AppCompatActivity {
     private TextInputLayout tiEmail;
-    private TextInputLayout tiPassword;
+    private TextInputLayout tiPassword, tiConfirmPassword;
     private Button btnSignup, btnGotAnAccountSignIn;
     private SignInButton btnGoogleSignIn;
     private ProgressBar progressBar;
@@ -82,6 +84,59 @@ public class Signup extends AppCompatActivity {
         btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
         progressBar = findViewById(R.id.pbSignup);
         btnGotAnAccountSignIn = findViewById(R.id.btnGotAnAccountSignIn);
+        tiConfirmPassword = findViewById(R.id.tiConfirmPassword);
+
+       // remove error when user starts typing
+        tiEmail.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                tiEmail.setError(null);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tiEmail.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tiEmail.setError(null);
+            }
+        });
+
+        tiPassword.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                tiPassword.setError(null);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tiPassword.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tiPassword.setError(null);
+            }
+        });
+
+        tiConfirmPassword.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                tiConfirmPassword.setError(null);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tiConfirmPassword.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tiConfirmPassword.setError(null);
+            }
+        });
 
         btnGotAnAccountSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +179,17 @@ public class Signup extends AppCompatActivity {
                     return;
                 }
 
+                // confirm password
+                if (tiConfirmPassword.getEditText().getText().toString().isEmpty()) {
+                    tiConfirmPassword.setError("Confirm password is required");
+                    return;
+                }
+
+                if (!tiPassword.getEditText().getText().toString().equals(tiConfirmPassword.getEditText().getText().toString())) {
+                    tiConfirmPassword.setError("Passwords do not match");
+                    return;
+                }
+
                 signupWithEmailAndPassword();
             }
         });
@@ -154,6 +220,7 @@ public class Signup extends AppCompatActivity {
                             } else {
                                 Toast.makeText(Signup.this, "Authentication failed: " + Objects.requireNonNull(task.getException()).getMessage(),
                                         Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
