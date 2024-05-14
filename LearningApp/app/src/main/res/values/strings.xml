@@ -88,4 +88,8 @@
     <string name="general">General</string>
     <string name="blog_image">Blog Image</string>
     <string name="blog_name">Blog Name</string>
+    <string name="career_roadmaps_icon">career_roadmaps_icon</string>
+    <string name="career_roadmaps">career_roadmaps</string>
+    <string name="view_career_roadmaps_to_plan_your_career">view_career_roadmaps_to_plan_your_career</string>
+    <string name="view_career_paths">View Career Paths</string>
 </resources>

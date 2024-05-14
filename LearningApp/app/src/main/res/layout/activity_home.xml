@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- activity_home.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,17 +7,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
+    <!-- Top app bar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="Learning App"
         app:titleTextColor="@android:color/black"
-        app:menu="@menu/top_app_bar_menu"/>
+        app:menu="@menu/top_app_bar_menu" />
 
+    <!-- Apptitude Test card -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -36,8 +38,7 @@
                 android:layout_height="194dp"
                 app:srcCompat="@mipmap/apptitude_test_icon_foreground"
                 android:scaleType="centerCrop"
-                android:contentDescription="@string/apptitude_test_icon"
-                />
+                android:contentDescription="@string/apptitude_test_icon" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,19 +51,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/apptitude_test"
-                    android:textAppearance="?attr/textAppearanceTitleMedium"
-                    />
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/unlock_your_potential_by_taking_our_apptitude_test"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?android:attr/textColorSecondary"
-                    />
+                    android:textColor="?android:attr/textColorSecondary" />
             </LinearLayout>
 
-            <!-- Buttons -->
+            <!-- Button -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,20 +73,78 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="@string/take_test"
-                    style="?attr/borderlessButtonStyle"
-                    />
+                    style="?attr/borderlessButtonStyle" />
             </LinearLayout>
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <View
+    <!-- Career Roadmaps card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/career_roadmaps_card"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <!-- Media -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="194dp"
+                app:srcCompat="@mipmap/apptitude_test_icon_foreground"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/career_roadmaps_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/career_roadmaps"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/view_career_roadmaps_to_plan_your_career"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textColor="?android:attr/textColorSecondary" />
+            </LinearLayout>
+            <!-- Button -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCareerPath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/view_career_paths"
+                    style="?attr/borderlessButtonStyle" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Bottom navigation -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -101,6 +158,5 @@
             app:menu="@menu/bottom_navigation_menu" />
 
     </LinearLayout>
-
 
 </LinearLayout>
