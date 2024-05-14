@@ -3,7 +3,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="signup">Signup</string>
-
     <string name="default_web_client_id">597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com</string>
     <string name="apptitude_test_icon">Apptitude Test Icon</string>
     <string name="apptitude_test">Apptitude Test</string>
@@ -92,4 +91,11 @@
     <string name="career_roadmaps">career_roadmaps</string>
     <string name="view_career_roadmaps_to_plan_your_career">view_career_roadmaps_to_plan_your_career</string>
     <string name="view_career_paths">View Career Paths</string>
+    <string name="got_an_account_sign_in">Got an account? Sign in</string>
+    <string name="create_account">Create Account</string>
+    <string name="_00_00">00:00</string>
+    <string name="blog_content">Blog Content</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="save_changes">Save Changes</string>
+
 </resources>

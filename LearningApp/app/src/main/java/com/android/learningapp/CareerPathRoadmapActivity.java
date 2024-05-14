@@ -30,10 +30,10 @@ public class CareerPathRoadmapActivity extends AppCompatActivity {
         TextView textViewRoadmap = findViewById(R.id.textViewRoadmap);
         switch (careerPath) {
             case "Software Engineer":
-                textViewRoadmap.setText(getString(R.string.software_engineer_roadmap));
+                //textViewRoadmap.setText(getString(R.string.software_engineer_roadmap));
                 break;
             case "Data Scientist":
-                textViewRoadmap.setText(getString(R.string.data_scientist_roadmap));
+                //textViewRoadmap.setText(getString(R.string.data_scientist_roadmap));
                 break;
             // Add cases for other career paths as needed
             default:
