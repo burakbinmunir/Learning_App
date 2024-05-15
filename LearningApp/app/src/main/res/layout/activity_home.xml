@@ -113,7 +113,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="194dp"
-                        app:srcCompat="@mipmap/apptitude_test_icon_foreground"
+                        app:srcCompat="@mipmap/cp_foreground"
                         android:scaleType="centerCrop"
                         android:contentDescription="@string/career_roadmaps_icon" />
 

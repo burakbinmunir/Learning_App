@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_career_roadmaps.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +9,7 @@
     tools:context=".CareerPath">
 
     <!-- Header -->
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
         android:textSize="24sp"
         android:textColor="@android:color/black"
         android:paddingBottom="16dp"
-        android:background="?android:attr/selectableItemBackground"
         android:textStyle="bold"/>
 
     <!-- Divider -->
@@ -28,11 +26,12 @@
         android:background="@android:color/darker_gray"
         android:layout_marginBottom="16dp"/>
 
-    <!-- List View -->
+    <!-- ListView for List Items -->
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
         android:padding="8dp" />
