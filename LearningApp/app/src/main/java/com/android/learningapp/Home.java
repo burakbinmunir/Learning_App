@@ -26,8 +26,11 @@ import java.util.Arrays;
 public class Home extends AppCompatActivity {
 
     private Toolbar topAppBar;
+
     private MaterialButton btnTakeApptitudeTest;
     private MaterialButton btnCareerPath;
+
+    private MaterialButton btnPracticeMockTests;
 
     BottomNavigationView  bottom_navigation;
 
@@ -88,7 +91,7 @@ public class Home extends AppCompatActivity {
 
                     Toast.makeText(Home.this, "Signing out...", Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(Home.this, Signup.class);
+                    Intent intent = new Intent(Home.this, Signin.class);
                     startActivity(intent);
                     return true;
                 }
@@ -112,13 +115,13 @@ public class Home extends AppCompatActivity {
     }
 
     private void initializeTakeApptitudeTestButton(){
-        btnTakeApptitudeTest = findViewById(R.id.btnTakeApptitudeTest);
+        btnPracticeMockTests = findViewById(R.id.btnPracticeMockTests);
 
-        btnTakeApptitudeTest.setOnClickListener(new View.OnClickListener() {
+        btnPracticeMockTests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Home.this, "Taking Aptitude Test", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Home.this, AptitudeTest.class);
+                Intent intent = new Intent(Home.this, MockTests.class);
                 startActivity(intent);
             }
         });

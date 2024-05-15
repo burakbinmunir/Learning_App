@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Apptitude Test card -->
+            <!-- Mock Tests card -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 android:layout_width="match_parent"
@@ -45,52 +45,51 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Media -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="194dp"
-                        app:srcCompat="@mipmap/apptitude_test_icon_foreground"
-                        android:scaleType="centerCrop"
-                        android:contentDescription="@string/apptitude_test_icon" />
+                <!-- Media -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="194dp"
+                    app:srcCompat="@mipmap/mock_test_img"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Mock Test Picture" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                        <!-- Title, secondary and supporting text -->
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/apptitude_test"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/unlock_your_potential_by_taking_our_apptitude_test"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textColor="?android:attr/textColorSecondary" />
-                    </LinearLayout>
-
-                    <!-- Button -->
-                    <LinearLayout
+                    <!-- Title, secondary and supporting text -->
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:orientation="horizontal">
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnTakeApptitudeTest"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:text="@string/take_test"
-                            style="?attr/borderlessButtonStyle" />
-                    </LinearLayout>
+                        android:text="@string/mock_tests"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/master_the_art_of_testing_with_our_comprehensive_mock_tests"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="?android:attr/textColorSecondary" />
                 </LinearLayout>
 
+                <!-- Button -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPracticeMockTests"
+                        style="?attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/start_practicing" />
+                </LinearLayout>
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Career Roadmaps card -->
@@ -130,6 +129,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/career_roadmaps"
                             android:textAppearance="?attr/textAppearanceTitleMedium" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -138,6 +138,7 @@
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
                     </LinearLayout>
+
                     <!-- Button -->
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -157,7 +158,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Add more MaterialCardViews as needed -->
+
 
         </LinearLayout>
     </ScrollView>

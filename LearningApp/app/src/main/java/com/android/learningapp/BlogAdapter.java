@@ -106,13 +106,29 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
 
                 // delete blog
                 view.findViewById(R.id.dialogBtnDelete).setOnClickListener(v1 -> {
-                    // delete blog from database
-                    FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
-                    firebaseUtils.deleteBlog(blog);
-                    notifyDataSetChanged();
-                    blogList.remove(blog);
-                    // close dialog
-                    alertDialog.dismiss();
+
+                    // Open confirm delete dialog
+                    AlertDialog.Builder confirmDeleteBuilder = new AlertDialog.Builder(context);
+                    confirmDeleteBuilder.setTitle("Confirm Delete");
+                    confirmDeleteBuilder.setMessage("Are you sure you want to delete this blog?");
+                    confirmDeleteBuilder.setPositiveButton("Yes", (dialog, which) -> {
+                        // delete blog from database
+                        FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
+                        firebaseUtils.deleteBlog(blog);
+                        notifyDataSetChanged();
+                        blogList.remove(blog);
+                        // close dialog
+                        alertDialog.dismiss();
+                    });
+
+                    confirmDeleteBuilder.setNegativeButton("No", (dialog, which) -> {
+                        dialog.dismiss();
+                    });
+
+                    AlertDialog confirmDeleteDialog = confirmDeleteBuilder.create();
+                    confirmDeleteDialog.show();
+
+
                 });
 
                 alertDialog = builder.create(); // Create the dialog here

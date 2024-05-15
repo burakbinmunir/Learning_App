@@ -52,7 +52,7 @@ public class ApptitudeTestScore extends AppCompatActivity {
         pbProgressBarAptTestScore.setProgress(score, true);
 
         btnBackToHome.setOnClickListener(v -> {
-            Intent intent = new Intent(ApptitudeTestScore.this, Home.class);
+            Intent intent = new Intent(ApptitudeTestScore.this, MockTests.class);
             startActivity(intent);
         });
     }

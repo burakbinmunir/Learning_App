@@ -115,6 +115,43 @@ public class FirebaseUtils {
         });
     }
 
+    public void uploadEcatTestMcq(MCQ mcq, String subjectName){
+        DatabaseReference mcqRef = database.getReference("ecat"+subjectName+"TestMcqs");
+
+        mcqRef.push().setValue(mcq).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "MCQ uploaded successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "MCQ uploaded failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void getEcatTestMcqs(String subjectName, MCQDataCallback callback) {
+        DatabaseReference mcqRef = database.getReference("ecat"+subjectName+"TestMcqs");
+
+        mcqRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    ArrayList<MCQ> mcqs = new ArrayList<>();
+                    DataSnapshot dataSnapshot = task.getResult();
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        MCQ mcq = child.getValue(MCQ.class);
+                        mcqs.add(mcq);
+                    }
+                    callback.onMCQDataLoaded(mcqs);
+                } else {
+                    callback.onDataLoadFailed("Failed to get MCQs: " + task.getException());
+                }
+            }
+        });
+    }
+
+
     public void getApptitudeTestMcqs(MCQDataCallback callback) {
         DatabaseReference mcqRef = database.getReference("aptitudeTestMcqs");
 
@@ -150,6 +187,7 @@ public class FirebaseUtils {
             }
         });
     }
+
 
 
     public ArrayList<Blog> getBlogs(BlogFetchListener listener) {

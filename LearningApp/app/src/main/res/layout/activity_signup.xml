@@ -65,6 +65,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/retype_password"
+        app:endIconMode="password_toggle"
+        android:layout_margin="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"> <!-- added outlined box style -->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" /> <!-- added text size -->
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <!-- Signup Button -->
     <Button
         style="@style/Widget.Material3.Button.ElevatedButton"

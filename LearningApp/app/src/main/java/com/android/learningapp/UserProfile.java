@@ -58,6 +58,12 @@ public class UserProfile extends AppCompatActivity {
         editProfile = findViewById(R.id.editProfile);
         editProfile.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfile.this, EditProfile.class);
+
+            intent.putExtra("username", username.getText().toString());
+            intent.putExtra("bio", bio.getText().toString());
+            intent.putExtra("email", email.getText().toString());
+            intent.putExtra("mobile", mobile.getText().toString());
+
             startActivity(intent);
         });
     }

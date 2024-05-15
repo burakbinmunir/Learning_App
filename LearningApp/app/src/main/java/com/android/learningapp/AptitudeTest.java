@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,7 +32,7 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
     RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     ProgressBar pbProgressBar;
     ImageView ivQuestionImage;
-
+    CountDownTimer countDownTimer;
     int score;
 
     private void initializeViews() {
@@ -76,7 +77,7 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
 
         // set timer for 30 seconds
         timer = findViewById(R.id.timer);
-        new CountDownTimer(30000, 1000) {
+        countDownTimer =  new CountDownTimer(30000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time remaining: " + millisUntilFinished / 1000);
@@ -133,7 +134,9 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
         else {
             btnFinish.setVisibility(View.VISIBLE);
             btnNext.setVisibility(View.GONE);
+            countDownTimer.cancel();
         }
+
     }
 
     private void handleOptionSelected(int optionIndex) {
@@ -155,5 +158,27 @@ public class AptitudeTest extends AppCompatActivity implements MCQDataCallback{
         setContentView(R.layout.activity_aptitude_test);
         FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(this);
         firebaseUtils.getApptitudeTestMcqs(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        // create alert dialog to confirm exit
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Exit Test");
+        builder.setMessage("Are you sure you want to exit the test?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            countDownTimer.cancel();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
+
+
+        countDownTimer.cancel();
+
     }
 }
