@@ -82,7 +82,7 @@ public class Blogs extends AppCompatActivity implements BlogFetchListener{
 
         rvBlogs.setHasFixedSize(true);
         rvBlogs.setLayoutManager(new GridLayoutManager(this, 2));
-        FirebaseUtils firebaseUtils = new FirebaseUtils(this);
+        FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(this);
         firebaseUtils.getBlogs(this);
     }
 

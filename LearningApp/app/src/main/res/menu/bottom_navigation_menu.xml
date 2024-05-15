@@ -28,4 +28,5 @@
         android:icon="@drawable/account_circle"
         android:title="Courses"
         app:showAsAction="ifRoom"/>
+
 </menu>

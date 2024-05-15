@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Signin"
+    android:orientation="vertical">
+
+    <!-- App Logo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:gravity="center"
+        android:layout_marginTop="24dp" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imageView1"
+        android:layout_width="380dp"
+        android:layout_height="220dp"
+        android:src="@mipmap/app_logo_foreground"
+        app:riv_corner_radius="30dip"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_oval="true" />
+
+    <!-- Email Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/tiSigninEmail"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        app:endIconMode="clear_text"
+        android:layout_margin="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"> <!-- added outlined box style -->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" /> <!-- added text size -->
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tiSigninPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
+        android:layout_margin="10dp"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"> <!-- added outlined box style -->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" /> <!-- added text size -->
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Signup Button -->
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:id="@+id/btnSignin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/common_signin_button_text"
+        android:layout_margin="10dp"
+        android:background="@drawable/pointed_button_shape"
+        android:textSize="16sp" /> <!-- added text size -->
+
+    <!-- Google Sign In Button -->
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btnSigninPageGoogleSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/create_account"
+        android:layout_margin="10dp"
+        android:background="@drawable/pointed_button_shape"
+        android:textSize="16sp" />
+
+    <ProgressBar
+        android:id="@+id/pbSignin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+
+</LinearLayout>

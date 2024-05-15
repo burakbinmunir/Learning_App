@@ -6,6 +6,8 @@ public class Blog {
     private String imageUrl;
     private String category;
 
+    private String blogKey;
+
     public Blog() {
     }
 
@@ -46,5 +48,13 @@ public class Blog {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getBlogKey() {
+        return blogKey;
+    }
+
+    public void setBlogKey(String blogKey) {
+        this.blogKey = blogKey;
     }
 }

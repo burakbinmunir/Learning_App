@@ -1,11 +1,14 @@
 package com.android.learningapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +57,7 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
     public class BlogViewHolder extends RecyclerView.ViewHolder {
         private TextView blogTitle, blogContent;
         private ImageView blogImage;
+        private AlertDialog alertDialog;
 
         public BlogViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,69 @@ public class BlogAdapter extends RecyclerView.Adapter<BlogAdapter.BlogViewHolder
                 intent.putExtra("blogContent", blog.getContent());
                 intent.putExtra("blogImageUrl", blog.getImageUrl());
                 context.startActivity(intent);
+            });
+
+            // on long click open dialog box to edit or delete blog
+            itemView.setOnLongClickListener(v -> {
+                int position = getAdapterPosition();
+                Blog blog = blogList.get(position);
+                // open alert dialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Update or Delete Blog");
+                View view = LayoutInflater.from(context).inflate(R.layout.dialog_update_delete_blog, null);
+                builder.setView(view);
+
+                // set up dialog box
+                EditText dialogEtBlogTitle = view.findViewById(R.id.dialogEtBlogTitle);
+                EditText dialogEtBlogContent = view.findViewById(R.id.dialogEtBlogContent);
+                dialogEtBlogContent.setText(blog.getContent());
+                dialogEtBlogTitle.setText(blog.getTitle());
+
+                // update blog
+                view.findViewById(R.id.dialogBtnUpdate).setOnClickListener(v1 -> {
+                    String updatedTitle = dialogEtBlogTitle.getText().toString();
+                    String updatedContent = dialogEtBlogContent.getText().toString();
+                    blog.setTitle(updatedTitle);
+                    blog.setContent(updatedContent);
+//                    // update blog in database
+                    FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
+                    firebaseUtils.updateBlog(blog);
+                    notifyDataSetChanged();
+                    // close dialog
+                    alertDialog.dismiss();
+                });
+
+                // delete blog
+                view.findViewById(R.id.dialogBtnDelete).setOnClickListener(v1 -> {
+
+                    // Open confirm delete dialog
+                    AlertDialog.Builder confirmDeleteBuilder = new AlertDialog.Builder(context);
+                    confirmDeleteBuilder.setTitle("Confirm Delete");
+                    confirmDeleteBuilder.setMessage("Are you sure you want to delete this blog?");
+                    confirmDeleteBuilder.setPositiveButton("Yes", (dialog, which) -> {
+                        // delete blog from database
+                        FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(context);
+                        firebaseUtils.deleteBlog(blog);
+                        notifyDataSetChanged();
+                        blogList.remove(blog);
+                        // close dialog
+                        alertDialog.dismiss();
+                    });
+
+                    confirmDeleteBuilder.setNegativeButton("No", (dialog, which) -> {
+                        dialog.dismiss();
+                    });
+
+                    AlertDialog confirmDeleteDialog = confirmDeleteBuilder.create();
+                    confirmDeleteDialog.show();
+
+
+                });
+
+                alertDialog = builder.create(); // Create the dialog here
+                alertDialog.show();
+
+                return true;
             });
         }
 
