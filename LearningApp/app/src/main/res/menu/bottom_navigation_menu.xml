@@ -21,4 +21,11 @@
         android:icon="@drawable/account_circle"
         android:title="@string/profile_"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/itemcourse"
+        android:enabled="true"
+        android:icon="@drawable/account_circle"
+        android:title="Courses"
+        app:showAsAction="ifRoom"/>
 </menu>

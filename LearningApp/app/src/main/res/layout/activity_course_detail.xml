@@ -1,0 +1,45 @@
+<!-- res/layout/course_layout.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+    <TextView
+        android:id="@+id/course_title_text_view"
+        style="@style/CourseTitleTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/course_content_text_view"
+        style="@style/CourseContentTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin" />
+
+    <TextView
+        android:id="@+id/exercise_text_view"
+        style="@style/CourseContentTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin" />
+
+    <EditText
+        android:id="@+id/answer_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your answer"
+        android:layout_marginTop="@dimen/default_margin" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="@dimen/default_margin" />
+
+</LinearLayout>
+
+    <!-- res/values/styles.xml -->
