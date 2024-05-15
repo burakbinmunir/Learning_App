@@ -97,5 +97,8 @@
     <string name="blog_content">Blog Content</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save_changes">Save Changes</string>
+    <string name="the_career_path_typically_involves">The career path typically involves...</string>
+    <string name="what_is_the_career_path_for_this_profession">What is the career path for this profession?</string>
+    <string name="career_roadmap_image">career_roadmap_image</string>
 
 </resources>

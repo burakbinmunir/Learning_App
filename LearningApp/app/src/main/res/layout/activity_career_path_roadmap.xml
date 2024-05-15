@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".CareerPathRoadmapActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewCareerPath"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+    <!-- Image View for displaying the career roadmap image -->
+    <ImageView
+        android:id="@+id/image_career_roadmap"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/account_circle"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/career_roadmap_image" />
 
-    <TextView
-        android:id="@+id/textViewRoadmap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"/>
+    <!-- FAQ ListView -->
+    <ListView
+        android:id="@+id/listview_faq"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/image_career_roadmap"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:background="@android:color/white"
+        android:clipToPadding="false" />
 
-</LinearLayout>
+</RelativeLayout>

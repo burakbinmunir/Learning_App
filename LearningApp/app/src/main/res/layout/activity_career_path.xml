@@ -7,14 +7,14 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@android:color/white"
-    tools:context=".CareerRoadmapsActivity">
+    tools:context=".CareerPath">
 
     <!-- Header -->
     <TextView
         android:id="@+id/textViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Career Roadmaps"
+        android:text="@string/career_roadmaps"
         android:textSize="24sp"
         android:textColor="@android:color/black"
         android:paddingBottom="16dp"

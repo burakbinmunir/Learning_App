@@ -1,7 +1,9 @@
 package com.android.learningapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -24,6 +26,21 @@ public class CareerPath extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_item_career_roadmap, careerRoadmaps);
         listView.setAdapter(adapter);
+
+        // Set click listener for ListView items
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected career roadmap
+                String selectedCareerRoadmap = (String) parent.getItemAtPosition(position);
+
+                // Start CareerPathRoadmap activity
+                Intent intent = new Intent(CareerPath.this, CareerPathRoadmapActivity.class);
+                // Pass selected career roadmap as extra data
+                intent.putExtra("career_roadmap", selectedCareerRoadmap);
+                startActivity(intent);
+            }
+        });
     }
 
     private ArrayList<String> loadDataFromXml() {

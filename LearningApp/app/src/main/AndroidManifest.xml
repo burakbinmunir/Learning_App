@@ -23,53 +23,42 @@
         <activity
             android:name=".CareerPathRoadmapActivity"
             android:exported="false" />
-
         <activity
             android:name=".CareerPath"
             android:exported="false" />
-
         <activity
             android:name=".EditProfile"
             android:exported="false" />
-
         <activity
             android:name=".Signin"
             android:exported="false" />
-
         <activity
             android:name=".ReadBlog"
             android:exported="false" />
-
         <activity
             android:name=".AddNewBlog"
             android:exported="false" />
-
         <activity
             android:name=".Blogs"
             android:exported="false"
             android:parentActivityName=".Home" />
-
         <activity
             android:name=".UserProfile"
             android:exported="false"
             android:parentActivityName=".Home"
             android:theme="@style/Theme.LearningApp" />
-
         <activity
             android:name=".ApptitudeTestScore"
             android:exported="false"
             android:parentActivityName=".Home" />
-
         <activity
             android:name=".AptitudeTest"
             android:exported="false"
             android:parentActivityName=".Home" />
-
         <activity
             android:name=".Home"
             android:exported="false"
             android:parentActivityName=".Home" />
-
         <activity
             android:name=".Signup"
             android:exported="true">
