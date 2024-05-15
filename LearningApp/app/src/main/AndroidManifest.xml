@@ -19,7 +19,15 @@
         android:theme="@style/Theme.LearningApp"
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MathsTestSat"
+            android:exported="false" />
+        <activity
+            android:name=".ArabicTestSat"
+            android:exported="false" />
+        <activity
+            android:name=".SatTests"
+            android:exported="false" />
         <activity
             android:name=".CareerPathRoadmapActivity"
             android:exported="false" />
@@ -43,24 +51,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MockTests" />
         </activity>
-
         <activity
             android:name=".PhysicsEcatTest"
             android:exported="false" />
         <activity
             android:name=".MockTests"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
         </activity>
-
         <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity
             android:name=".Signin"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -93,17 +99,14 @@
         <activity
             android:name=".Home"
             android:exported="false"
-            android:parentActivityName=".Home" >
+            android:parentActivityName=".Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Home" />
         </activity>
         <activity
             android:name=".Signup"
-            android:exported="false"
-            >
-
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

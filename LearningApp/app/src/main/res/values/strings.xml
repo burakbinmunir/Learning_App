@@ -119,5 +119,8 @@
     <string name="retype_password">Retype password</string>
     <string name="frequently_asked_questions">Frequently Asked Questions</string>
     <string name="roadmap">Roadmap</string>
+    <string name="scholastic_assessment_test">Scholastic Assessment Test</string>
+    <string name="unleash_your_academic_potential_with_our_sat_preparation">Unleash your academic potential with our SAT preparation</string>
+    <string name="math_test_no_calculator">Math Test – No Calculator</string>
 
 </resources>

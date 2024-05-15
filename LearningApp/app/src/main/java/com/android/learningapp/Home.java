@@ -1,5 +1,6 @@
 package com.android.learningapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -87,12 +88,24 @@ public class Home extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.action_logout) {
 
-                    FirebaseAuth.getInstance().signOut();
+                    // build a dialog box to confirm logout
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
+                    builder.setTitle("Logout");
+                    builder.setMessage("Are you sure you want to logout?");
+                    builder.setPositiveButton("Yes", (dialog, which) -> {
+                        // sign out user
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(Home.this, "Signing out...", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Home.this, Signin.class);
+                        startActivity(intent);
+                    });
+                    builder.setNegativeButton("No", (dialog, which) -> {
+                        // close dialog
+                        dialog.dismiss();
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
 
-                    Toast.makeText(Home.this, "Signing out...", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(Home.this, Signin.class);
-                    startActivity(intent);
                     return true;
                 }
                 return false;
@@ -120,7 +133,6 @@ public class Home extends AppCompatActivity {
         btnPracticeMockTests.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Home.this, "Taking Aptitude Test", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Home.this, MockTests.class);
                 startActivity(intent);
             }

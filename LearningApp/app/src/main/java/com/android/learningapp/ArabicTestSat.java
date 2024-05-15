@@ -23,7 +23,7 @@ import androidx.fragment.app.FragmentManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallback{
+public class ArabicTestSat extends AppCompatActivity implements MCQDataCallback{
     FragmentManager manager;
     Fragment fragment_mcq;
     List<MCQ> mcqList;
@@ -42,14 +42,14 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_english_ecat_test);
+        setContentView(R.layout.activity_arabic_test_sat);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(this);
-        firebaseUtils.getEcatTestMcqs("english",this);
+        FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(this);
+        firebaseUtils.getEcatTestMcqs("arabic", this);
     }
 
     private void initializeViews() {
@@ -86,7 +86,7 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EnglishEcatTest.this, ApptitudeTestScore.class);
+                Intent intent = new Intent(ArabicTestSat.this, ApptitudeTestScore.class);
                 intent.putExtra("score", score);
                 startActivity(intent);
                 countDownTimer.cancel();
@@ -102,8 +102,8 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
             }
 
             public void onFinish() {
-                Toast.makeText(EnglishEcatTest.this, "Time is up", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EnglishEcatTest.this, ApptitudeTestScore.class);
+                Toast.makeText(ArabicTestSat.this, "Time is up", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ArabicTestSat.this, ApptitudeTestScore.class);
                 intent.putExtra("score", score);
                 startActivity(intent);
             }
