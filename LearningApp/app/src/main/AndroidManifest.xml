@@ -19,6 +19,13 @@
         android:theme="@style/Theme.LearningApp"
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
+
+        <activity
+            android:name=".CareerPathRoadmapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CareerPath"
+            android:exported="false" />
         <activity
             android:name=".EnglishEcatTest"
             android:exported="false" />

@@ -11,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -25,7 +26,12 @@ import java.util.Arrays;
 public class Home extends AppCompatActivity {
 
     private Toolbar topAppBar;
+
+    private MaterialButton btnTakeApptitudeTest;
+    private MaterialButton btnCareerPath;
+
     private MaterialButton btnPracticeMockTests;
+
     BottomNavigationView  bottom_navigation;
 
     @Override
@@ -94,6 +100,20 @@ public class Home extends AppCompatActivity {
         });
     }
 
+    private void initializeCareerPathButton(){
+        btnCareerPath = findViewById(R.id.btnCareerPath);
+        // Set onClickListener for career roadmaps card
+        btnCareerPath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open CareerPathActivity
+                Toast.makeText(Home.this, "Career path", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Home.this, CareerPath.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void initializeTakeApptitudeTestButton(){
         btnPracticeMockTests = findViewById(R.id.btnPracticeMockTests);
 
@@ -111,6 +131,7 @@ public class Home extends AppCompatActivity {
      initializeTopAppBar();
      initializeBottomAppBar();
      initializeTakeApptitudeTestButton();
+     initializeCareerPathButton();
     }
 
     @Override

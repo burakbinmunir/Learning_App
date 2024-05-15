@@ -3,7 +3,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="signup">Signup</string>
-
     <string name="default_web_client_id">597446628586-23bam2a6i2ad5voi8sotqulja5ft46in.apps.googleusercontent.com</string>
     <string name="apptitude_test_icon">Apptitude Test Icon</string>
     <string name="apptitude_test">Apptitude Test</string>
@@ -88,12 +87,19 @@
     <string name="general">General</string>
     <string name="blog_image">Blog Image</string>
     <string name="blog_name">Blog Name</string>
+    <string name="career_roadmaps_icon">career_roadmaps_icon</string>
+    <string name="career_roadmaps">career_roadmaps</string>
+    <string name="view_career_roadmaps_to_plan_your_career">view_career_roadmaps_to_plan_your_career</string>
+    <string name="view_career_paths">View Career Paths</string>
     <string name="got_an_account_sign_in">Got an account? Sign in</string>
     <string name="create_account">Create Account</string>
     <string name="_00_00">00:00</string>
     <string name="blog_content">Blog Content</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="save_changes">Save Changes</string>
+    <string name="the_career_path_typically_involves">The career path typically involves...</string>
+    <string name="what_is_the_career_path_for_this_profession">What is the career path for this profession?</string>
+    <string name="career_roadmap_image">career_roadmap_image</string>
     <string name="ecat_test_picture">Ecat Test Picture</string>
     <string name="ecat">ECAT</string>
     <string name="engineering_college_admission_test">Engineering College Admission Test</string>
@@ -111,4 +117,7 @@
     <string name="master_the_art_of_language_with_our_english_tests">Master the art of language with our English tests!</string>
     <string name="mock_test_results">Mock Test Results</string>
     <string name="retype_password">Retype password</string>
+    <string name="frequently_asked_questions">Frequently Asked Questions</string>
+    <string name="roadmap">Roadmap</string>
+
 </resources>
