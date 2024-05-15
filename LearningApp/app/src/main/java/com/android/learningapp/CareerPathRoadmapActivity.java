@@ -31,6 +31,10 @@ public class CareerPathRoadmapActivity extends AppCompatActivity {
         if (roadmapData != null && !roadmapData.isEmpty()) {
             int imageResource = (int) roadmapData.get(0);
             careerRoadmapImage.setImageResource(imageResource);
+            // Find TextView and set text below image
+            TextView textViewBelowImage = findViewById(R.id.text_below_image);
+            textViewBelowImage.setText((String) roadmapData.get(1));
+
         }
 
         populateFAQCards(career);
@@ -42,14 +46,9 @@ public class CareerPathRoadmapActivity extends AppCompatActivity {
 
         if (roadmapData != null && roadmapData.size() > 1) {
 
-            String[] faqTitles = (String[]) roadmapData.get(1);
+            String[] faqTitles = (String[]) roadmapData.get(2);
 
-            String[] faqAnswers = (String[]) roadmapData.get(2); // Get FAQ answers
-
-            // Show Toast messages for FAQ titles
-            for (String title : faqTitles) {
-                Toast.makeText(this, title, Toast.LENGTH_SHORT).show();
-            }
+            String[] faqAnswers = (String[]) roadmapData.get(3); // Get FAQ answers
 
             FAQListAdapter adapter = new FAQListAdapter(this, faqTitles, faqAnswers);
 

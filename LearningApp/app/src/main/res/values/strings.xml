@@ -117,5 +117,7 @@
     <string name="master_the_art_of_language_with_our_english_tests">Master the art of language with our English tests!</string>
     <string name="mock_test_results">Mock Test Results</string>
     <string name="retype_password">Retype password</string>
+    <string name="frequently_asked_questions">Frequently Asked Questions</string>
+    <string name="roadmap">Roadmap</string>
 
 </resources>
