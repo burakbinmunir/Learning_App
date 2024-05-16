@@ -22,4 +22,18 @@
         android:title="@string/profile_"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/itemcourse"
+        android:enabled="true"
+        android:icon="@drawable/course_icon"
+        android:title="Courses"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/itemchatbot"
+        android:enabled="true"
+        android:icon="@drawable/baseline_3p_24"
+        android:title="ChatBot"
+        app:showAsAction="ifRoom"/>
+
 </menu>

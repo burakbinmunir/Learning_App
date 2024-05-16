@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <meta-data
@@ -27,6 +29,10 @@
             android:exported="false" />
         <activity
             android:name=".SatTests"
+            android:exported="false"
+            />
+        <activity
+            android:name=".ChatbotActivity"
             android:exported="false" />
         <activity
             android:name=".CareerPathRoadmapActivity"
@@ -74,6 +80,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".CourseDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LearningApp" />
+        <activity
+            android:name=".CourseSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.LearningApp" />
+        <activity
             android:name=".ReadBlog"
             android:exported="false" />
         <activity
@@ -106,7 +120,8 @@
         </activity>
         <activity
             android:name=".Signup"
-            android:exported="false" />
+            android:exported="false"></activity>
+           
     </application>
 
 </manifest>

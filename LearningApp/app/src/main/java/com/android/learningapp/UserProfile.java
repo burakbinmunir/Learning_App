@@ -88,6 +88,18 @@ public class UserProfile extends AppCompatActivity {
                 item.setChecked(true);
                 return true;
             }
+            else if(item.getItemId() == R.id.itemcourse){
+                Intent courseSelectionIntent = new Intent(this, CourseSelectionActivity.class);
+                startActivity(courseSelectionIntent);
+                item.setChecked(true);
+                return true;
+            }
+            else if(item.getItemId() == R.id.itemchatbot){
+                Intent ChatbotIntent = new Intent(this, ChatbotActivity.class);
+                startActivity(ChatbotIntent);
+                item.setChecked(true);
+                return true;
+            }
             return false;
         });
     }
