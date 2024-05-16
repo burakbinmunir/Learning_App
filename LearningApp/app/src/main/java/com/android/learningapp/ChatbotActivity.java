@@ -108,7 +108,7 @@ public class ChatbotActivity extends AppCompatActivity {
             public java.util.Map<String, String> getHeaders() {
                 java.util.Map<String, String> params = new java.util.HashMap<>();
                 params.put("Content-Type", "application/json");
-                params.put("Authorization", "Bearer sk-proj-Netj4n7oTcUjiHnXJSQnT3BlbkFJozHoiO2F2uJtZW8E2gSi");
+                params.put("Authorization", "Bearer ");
                 return params;
             }
         };
