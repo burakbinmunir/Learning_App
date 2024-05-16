@@ -158,7 +158,6 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
     @Override
     public void onMCQDataLoaded(ArrayList<MCQ> mcqs) {
         mcqList = mcqs;
-        Toast.makeText(this, "MCQs loaded" + mcqs.size(), Toast.LENGTH_SHORT).show();
         currentQuestionIndex = 0;
         score = 0;
         initializeViews();

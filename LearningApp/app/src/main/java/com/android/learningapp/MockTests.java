@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class MockTests extends AppCompatActivity {
 
-    MaterialCardView ecatCard;
+    MaterialCardView ecatCard, satCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,10 @@ public class MockTests extends AppCompatActivity {
             startActivity(new Intent(MockTests.this, EcatTests.class));
         });
 
-
+        satCard = findViewById(R.id.satCard);
+        satCard.setOnClickListener(v -> {
+            startActivity(new Intent(MockTests.this, SatTests.class));
+        });
     }
 
 
@@ -197,6 +200,56 @@ public class MockTests extends AppCompatActivity {
 
         for (MCQ mcq : mcqs) {
             firebaseUtils.uploadEcatTestMcq(mcq, "maths");
+        }
+    }
+
+    private void uploadArabicLanguageMCQs() {
+        FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(this);
+
+        // MCQ 1
+        ArrayList<String> options1 = new ArrayList<>(Arrays.asList("القمر", "الشمس", "الكوكب", "النجمة"));
+        MCQ mcq1 = new MCQ("ما هو الجسم الذي يضيء في الليل؟", options1, 0,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 2
+        ArrayList<String> options2 = new ArrayList<>(Arrays.asList("العشاء", "الإفطار", "الغداء", "السحور"));
+        MCQ mcq2 = new MCQ("ماذا يُسمى وجبة الأكل الأخيرة في اليوم؟", options2, 0,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 3
+        ArrayList<String> options3 = new ArrayList<>(Arrays.asList("أحمر", "أصفر", "أخضر", "أزرق"));
+        MCQ mcq3 = new MCQ("ما هو لون العلم الذي يرمز إلى السلام؟", options3, 2,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 4
+        ArrayList<String> options4 = new ArrayList<>(Arrays.asList("جبل", "وديان", "سهل", "صحراء"));
+        MCQ mcq4 = new MCQ("ماذا يُسمى المنطقة الجغرافية الواسعة التي يفتقر فيها التضاريس إلى الارتفاعات؟", options4, 2,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 5
+        ArrayList<String> options5 = new ArrayList<>(Arrays.asList("الخميس", "الجمعة", "السبت", "الأحد"));
+        MCQ mcq5 = new MCQ("ما هو أول يوم في أسبوع العمل بالنسبة للمسلمين؟", options5, 3,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 6
+        ArrayList<String> options6 = new ArrayList<>(Arrays.asList("الكتاب", "القرآن", "المجلة", "الجريدة"));
+        MCQ mcq6 = new MCQ("ما هو الكتاب المقدس في الإسلام؟", options6, 1,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 7
+        ArrayList<String> options7 = new ArrayList<>(Arrays.asList("مصر", "السودان", "العراق", "المملكة العربية السعودية"));
+        MCQ mcq7 = new MCQ("ما هو البلد الذي يعتبر مصدر نهر النيل؟", options7, 0,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 8
+        ArrayList<String> options8 = new ArrayList<>(Arrays.asList("القطر", "الكويت", "الإمارات", "البحرين"));
+        MCQ mcq8 = new MCQ("ما هي أصغر دولة عربية من حيث المساحة؟", options8, 3,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 9
+        ArrayList<String> options9 = new ArrayList<>(Arrays.asList("سمك", "دجاج", "لحم بقري", "لحم غنم"));
+        MCQ mcq9 = new MCQ("ما هو النوع الأكثر شهرة من اللحوم في المطبخ العربي؟", options9, 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        // MCQ 10
+        ArrayList<String> options10 = new ArrayList<>(Arrays.asList("الكنافة", "البقلاوة", "القطايف", "الهريسة"));
+        MCQ mcq10 = new MCQ("ما هو الحلوى الشهيرة المصنوعة من العجين والمكسرات ومشبعة بالسكريات في المطبخ العربي؟", options10, 1,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fIXArXqTSQtg13ycrhekwIG-tBovCpTRlQ&s");
+
+        ArrayList<MCQ> mcqs = new ArrayList<>(Arrays.asList(mcq1, mcq2, mcq3, mcq4, mcq5, mcq6, mcq7, mcq8, mcq9, mcq10));
+
+        for (MCQ mcq : mcqs) {
+            firebaseUtils.uploadEcatTestMcq(mcq, "arabic");
         }
     }
 

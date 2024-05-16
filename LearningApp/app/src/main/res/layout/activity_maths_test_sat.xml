@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MathsTestSat">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maths Test SAT"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:padding="16dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:id="@+id/timer"
+        android:padding="32dp"
+        android:layout_below="@+id/title"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_above="@id/submitAnswers"
+        android:layout_below="@+id/timer"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:id="@+id/question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If x = 4, what is the value of 3x + 4?"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/answer1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer here"
+            android:inputType="number"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the value of 2^3?"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/answer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer here"
+            android:inputType="number"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the value of 2 + 4 * 2?"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer here"
+            android:inputType="number"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If x = 5, what is the value of 5x"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer here"
+            android:inputType="number"
+            android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/question5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the square root of 9?"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:padding="16dp"/>
+
+        <EditText
+            android:id="@+id/answer5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter your answer here"
+            android:inputType="number"
+            android:padding="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+        <Button
+            android:id="@+id/submitAnswers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Answers"
+            android:padding="16dp"
+            android:layout_margin="16dp"
+            android:layout_alignParentBottom="true"
+            />
+
+
+</RelativeLayout>
