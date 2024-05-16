@@ -64,6 +64,16 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 }
+                else if(menuItem.getItemId() == R.id.itemcourse){
+                    Intent courseSelectionIntent = new Intent(Home.this, CourseSelectionActivity.class);
+                    startActivity(courseSelectionIntent);
+                    return true;
+                }
+                else if(menuItem.getItemId() == R.id.itemchatbot){
+                    Intent ChatbotIntent = new Intent(Home.this, ChatbotActivity.class);
+                    startActivity(ChatbotIntent);
+                    return true;
+                }
                 return false;
             }
         });

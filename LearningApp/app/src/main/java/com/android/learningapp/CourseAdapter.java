@@ -4,22 +4,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-import android.content.Intent;
-
-
 import android.widget.ImageView;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
 
     private List<Course> mCourses;
+    private CourseSelectionActivity mActivity;
 
-    public CourseAdapter(List<Course> courses) {
+    public CourseAdapter(List<Course> courses, CourseSelectionActivity activity) {
         mCourses = courses;
+        mActivity = activity;
     }
 
     @NonNull
@@ -30,39 +27,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     @Override
-
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-
         Course course = mCourses.get(position);
-
         holder.mTitleTextView.setText(course.getTitle());
-
         holder.mDescriptionTextView.setText(course.getDescription());
-
         holder.mRatingsTextView.setText(String.valueOf(course.getRatings()));
-
         holder.mCourseImageView.setImageResource(course.getImageResourceId());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-
             @Override
-
             public void onClick(View v) {
-
-                // navigate to course detail page
-
-                Intent intent = new Intent(v.getContext(), CourseDetailActivity.class);
-
-                intent.putExtra("course", course);
-
-                v.getContext().startActivity(intent);
-
+                mActivity.launchCourseDetailActivity(course);
             }
-
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -70,7 +47,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     }
 
     public static class CourseViewHolder extends RecyclerView.ViewHolder {
-
         public TextView mTitleTextView;
         public TextView mDescriptionTextView;
         public TextView mRatingsTextView;
@@ -85,14 +61,3 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

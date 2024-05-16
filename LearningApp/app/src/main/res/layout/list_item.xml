@@ -8,7 +8,6 @@
     android:layout_margin="8dp"
     android:elevation="4dp">
 
-
     <ImageView
         android:id="@+id/course_image_view"
         android:layout_width="match_parent"

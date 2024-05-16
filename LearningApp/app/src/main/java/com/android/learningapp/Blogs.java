@@ -73,6 +73,11 @@ public class Blogs extends AppCompatActivity implements BlogFetchListener{
                 startActivity(courseSelectionIntent);
                 item.setChecked(true);
             }
+            else if(item.getItemId() == R.id.itemchatbot){
+                Intent ChatbotIntent = new Intent(this, ChatbotActivity.class);
+                startActivity(ChatbotIntent);
+                item.setChecked(true);
+            }
             return false;
         });
 
