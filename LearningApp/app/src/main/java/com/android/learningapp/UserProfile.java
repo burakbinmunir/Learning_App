@@ -3,7 +3,10 @@ package com.android.learningapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +18,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.shape.Shapeable;
 
-public class UserProfile extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class UserProfile extends AppCompatActivity implements ScoresCallback , EnglishScoreCallBack{
 
     BottomNavigationView bottomNavigationView;
     ShapeableImageView profileImage;
-    TextView username, bio, email, username2, mobile;
+    TextView username, bio, email, username2, mobile, physicsScore, englishScore;
     ImageButton editProfile;
+    ProgressBar physicsProgressBar;
+    SeekBar physicsSeekBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,8 @@ public class UserProfile extends AppCompatActivity {
         email = findViewById(R.id.email);
         username2 = findViewById(R.id.username2);
         mobile = findViewById(R.id.mobile);
+        physicsScore = findViewById(R.id.physicsScore);
+        englishScore = findViewById(R.id.englishScore);
 
         FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(this);
         firebaseUtils.getUserProfile( profileImage, username, bio, email, username2, mobile);
@@ -66,8 +75,15 @@ public class UserProfile extends AppCompatActivity {
 
             startActivity(intent);
         });
+        initializeAnalytics();
     }
 
+    private void initializeAnalytics() {
+        FirebaseUtils firebaseUtils = FirebaseUtils.getInstance(this);
+        firebaseUtils.getTestScores("physics", this);
+
+        firebaseUtils.getEnglishTestScores(this);
+    }
     private void initializeBottomNavigation() {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
@@ -102,5 +118,25 @@ public class UserProfile extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    private int computeAverage(ArrayList<Integer> scores) {
+        int sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+        return sum / scores.size();
+    }
+
+    @Override
+    public void onCallback(ArrayList<Integer> scores) {
+            physicsScore.setText(String.valueOf(computeAverage(scores)));
+    }
+
+    @Override
+    public void onEnglishScoreLoaded(ArrayList<Integer> scores) {
+//        englishScore.setText("87");
+        englishScore.setText(String.valueOf(computeAverage(scores)));
+
     }
 }

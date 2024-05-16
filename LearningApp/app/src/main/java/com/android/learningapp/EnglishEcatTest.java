@@ -87,6 +87,8 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EnglishEcatTest.this, ApptitudeTestScore.class);
+                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(EnglishEcatTest.this);
+                firebaseUtils.uploadTestScore( score,"english");
                 intent.putExtra("score", score);
                 startActivity(intent);
                 countDownTimer.cancel();
@@ -104,6 +106,9 @@ public class EnglishEcatTest extends AppCompatActivity implements MCQDataCallbac
             public void onFinish() {
                 Toast.makeText(EnglishEcatTest.this, "Time is up", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EnglishEcatTest.this, ApptitudeTestScore.class);
+                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(EnglishEcatTest.this);
+                firebaseUtils.uploadTestScore( score,"english");
+
                 intent.putExtra("score", score);
                 startActivity(intent);
             }

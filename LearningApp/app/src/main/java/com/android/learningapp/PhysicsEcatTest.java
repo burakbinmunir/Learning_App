@@ -87,6 +87,8 @@ public class PhysicsEcatTest extends AppCompatActivity implements MCQDataCallbac
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PhysicsEcatTest.this, ApptitudeTestScore.class);
+                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(PhysicsEcatTest.this);
+                firebaseUtils.uploadTestScore( score,"physics");
                 intent.putExtra("score", score);
                 startActivity(intent);
                 countDownTimer.cancel();
@@ -104,6 +106,8 @@ public class PhysicsEcatTest extends AppCompatActivity implements MCQDataCallbac
 
             public void onFinish() {
                 Toast.makeText(PhysicsEcatTest.this, "Time is up", Toast.LENGTH_SHORT).show();
+                FirebaseUtils firebaseUtils =  FirebaseUtils.getInstance(PhysicsEcatTest.this);
+                firebaseUtils.uploadTestScore( score,"physics");
                 Intent intent = new Intent(PhysicsEcatTest.this, ApptitudeTestScore.class);
                 intent.putExtra("score", score);
                 startActivity(intent);

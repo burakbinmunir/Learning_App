@@ -130,6 +130,28 @@ public class FirebaseUtils {
         });
     }
 
+    public void getEnglishTestScores(EnglishScoreCallBack callback) {
+        DatabaseReference scoreRef = database.getReference("englishTestScores").child(currentUser.getUid());
+
+        scoreRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    ArrayList<Integer> scores = new ArrayList<>();
+                    DataSnapshot dataSnapshot = task.getResult();
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Integer score = child.getValue(Integer.class);
+                        scores.add(score);
+                    }
+                    Toast.makeText(context, "Scores loaded successfully" + scores.size(), Toast.LENGTH_SHORT).show();
+                    callback.onEnglishScoreLoaded(scores); // Call the callback
+                } else {
+                    Toast.makeText(context, "Failed to get scores: " + task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     public void getEcatTestMcqs(String subjectName, MCQDataCallback callback) {
         DatabaseReference mcqRef = database.getReference("ecat"+subjectName+"TestMcqs");
 
@@ -151,7 +173,43 @@ public class FirebaseUtils {
         });
     }
 
+    // we will keep array list of mcqs score for each subject there will be a separate array list
+    public void uploadTestScore(int score, String subjectName){
+        DatabaseReference scoreRef = database.getReference(subjectName+"TestScores").child(currentUser.getUid());
 
+        scoreRef.push().setValue(score).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "Score uploaded successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Score uploaded failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void getTestScores(String subjectName, ScoresCallback callback) {
+        DatabaseReference scoreRef = database.getReference(subjectName+"TestScores").child(currentUser.getUid());
+
+        scoreRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    ArrayList<Integer> scores = new ArrayList<>();
+                    DataSnapshot dataSnapshot = task.getResult();
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        Integer score = child.getValue(Integer.class);
+                        scores.add(score);
+                    }
+                    Toast.makeText(context, "Scores loaded successfully" + scores.size(), Toast.LENGTH_SHORT).show();
+                    callback.onCallback(scores); // Call the callback
+                } else {
+                    Toast.makeText(context, "Failed to get scores: " + task.getException(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
     public void getApptitudeTestMcqs(MCQDataCallback callback) {
         DatabaseReference mcqRef = database.getReference("aptitudeTestMcqs");
 
